@@ -38,7 +38,7 @@ export default function Index() {
   return (
     <div className="min-h-screen p-6 sm:p-8">
       <header className="max-w-6xl mx-auto mb-8 sm:mb-12">
-        <h1 className="text-2xl sm:text-3xl font-semibold mb-2">
+        <h1 className="text-2xl sm:text-3xl font-semibold mb-2 neon-text">
           Meine Shortcuts
         </h1>
         <p className="text-muted-foreground">

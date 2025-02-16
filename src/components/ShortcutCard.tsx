@@ -14,7 +14,7 @@ export function ShortcutCard({ shortcut }: ShortcutCardProps) {
   return (
     <button
       onClick={handleClick}
-      className="glass card-hover w-full aspect-square p-6 flex flex-col items-center justify-center gap-4 group"
+      className="glass neon-border card-hover w-full aspect-square p-6 flex flex-col items-center justify-center gap-4 group hover:neon-glow"
     >
       {shortcut.icon ? (
         <img
@@ -26,10 +26,10 @@ export function ShortcutCard({ shortcut }: ShortcutCardProps) {
           }}
         />
       ) : (
-        <Link2 className="w-12 h-12 text-primary transition-transform group-hover:scale-110" />
+        <Link2 className="w-12 h-12 text-primary transition-transform group-hover:scale-110 animate-pulse-glow" />
       )}
       <div className="text-center">
-        <h3 className="font-medium text-sm mb-1 truncate max-w-[180px]">
+        <h3 className="font-medium text-sm mb-1 truncate max-w-[180px] neon-text">
           {shortcut.name}
         </h3>
         <p className="text-xs text-muted-foreground truncate max-w-[180px]">
