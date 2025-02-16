@@ -4,8 +4,10 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from "./ui/dialog";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { Label } from "./ui/label";
-import { Link2, Plus } from "lucide-react";
+import { Plus } from "lucide-react";
 import { Shortcut } from "@/lib/types";
+import { iconOptions } from "@/lib/storage";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./ui/select";
 
 interface AddShortcutDialogProps {
   open: boolean;
@@ -67,14 +69,33 @@ export function AddShortcutDialog({ open, onClose, onAdd }: AddShortcutDialogPro
             />
           </div>
           <div className="space-y-2">
-            <Label htmlFor="icon" className="text-primary">Icon URL (optional)</Label>
-            <Input
-              id="icon"
-              placeholder="https://example.com/icon.png"
-              value={icon}
-              onChange={(e) => setIcon(e.target.value)}
-              className="glass focus:neon-glow focus:border-primary"
-            />
+            <Label htmlFor="icon" className="text-primary">Icon auswählen</Label>
+            <Select value={icon} onValueChange={setIcon}>
+              <SelectTrigger className="glass focus:neon-glow focus:border-primary">
+                <SelectValue placeholder="Icon auswählen" />
+              </SelectTrigger>
+              <SelectContent>
+                {iconOptions.map((option) => (
+                  <SelectItem 
+                    key={option.value} 
+                    value={option.value}
+                    className="flex items-center gap-2"
+                  >
+                    {option.value ? (
+                      <img 
+                        src={option.value} 
+                        alt={option.name} 
+                        className="w-4 h-4"
+                        onError={(e) => {
+                          (e.target as HTMLImageElement).src = "/placeholder.svg";
+                        }}
+                      />
+                    ) : null}
+                    {option.name}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
           </div>
           <div className="flex justify-end gap-3 pt-4">
             <Button 
