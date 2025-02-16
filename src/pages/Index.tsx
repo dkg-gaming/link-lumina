@@ -35,6 +35,18 @@ export default function Index() {
     });
   };
 
+  const handleDeleteShortcut = (id: string) => {
+    const shortcut = shortcuts.find((s) => s.id === id);
+    const updatedShortcuts = shortcuts.filter((s) => s.id !== id);
+    setShortcuts(updatedShortcuts);
+    storeShortcuts(updatedShortcuts);
+
+    toast({
+      title: "Shortcut gelöscht",
+      description: shortcut ? `${shortcut.name} wurde gelöscht.` : "Shortcut wurde gelöscht.",
+    });
+  };
+
   return (
     <div className="min-h-screen p-6 sm:p-8">
       <header className="max-w-6xl mx-auto mb-8 sm:mb-12">
@@ -53,7 +65,10 @@ export default function Index() {
           </div>
           {shortcuts.map((shortcut) => (
             <div key={shortcut.id} className="col-span-1">
-              <ShortcutCard shortcut={shortcut} />
+              <ShortcutCard 
+                shortcut={shortcut} 
+                onDelete={handleDeleteShortcut}
+              />
             </div>
           ))}
         </div>
